@@ -1,0 +1,5 @@
+---
+description: Cursor rules for the Ecommerce Web Application Project, defining project structure, development workflow frontend (Next.js) integration. 
+globs:
+alwaysApply: false
+---
