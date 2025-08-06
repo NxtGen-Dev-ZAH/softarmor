@@ -4,19 +4,33 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Heart, ShoppingCart, Eye, Star } from "lucide-react";
+import {
+  Heart,
+  ShoppingCart,
+  Eye,
+  Star,
+  Scale,
+  Ruler,
+  ZoomIn,
+} from "lucide-react";
 import { Product } from "@/lib/products";
 
 interface ProductCardProps {
   product: Product;
   index?: number;
   className?: string;
+  onCompare?: (product: Product) => void;
+  onVisualize?: (product: Product) => void;
+  onSizeGuide?: () => void;
 }
 
 export default function ProductCard({
   product,
   index = 0,
   className = "",
+  onCompare,
+  onVisualize,
+  onSizeGuide,
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -31,8 +45,13 @@ export default function ProductCard({
   const handleQuickView = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    // TODO: Implement quick view modal
-    console.log("Quick view:", product.id);
+    onVisualize?.(product);
+  };
+
+  const handleCompare = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onCompare?.(product);
   };
 
   const handleWishlist = (e: React.MouseEvent) => {
@@ -88,7 +107,7 @@ export default function ProductCard({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
 
-          {/* Quick View Overlay */}
+          {/* Enhanced Quick View Overlay */}
           <motion.div
             className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             initial={{ opacity: 0 }}
@@ -97,16 +116,37 @@ export default function ProductCard({
             <div className="flex gap-2">
               <button
                 onClick={handleQuickView}
-                className="p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all duration-200"
+                className="p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all duration-200 group/btn"
+                title="Visualisation 3D"
               >
-                <Eye className="w-4 h-4 text-gray-700" />
+                <ZoomIn className="w-4 h-4 text-gray-700 group-hover/btn:scale-110 transition-transform" />
+              </button>
+              <button
+                onClick={handleCompare}
+                className="p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all duration-200 group/btn"
+                title="Comparer"
+              >
+                <Scale className="w-4 h-4 text-gray-700 group-hover/btn:scale-110 transition-transform" />
               </button>
               <button
                 onClick={handleAddToCart}
-                className="p-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-all duration-200"
+                className="p-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-all duration-200 group/btn"
+                title="Ajouter au panier"
               >
-                <ShoppingCart className="w-4 h-4" />
+                <ShoppingCart className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
               </button>
+            </div>
+          </motion.div>
+
+          {/* 3D View Indicator */}
+          <motion.div
+            className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
+          >
+            <div className="flex items-center gap-1 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-full text-white text-xs">
+              <Eye className="w-3 h-3" />
+              <span>3D</span>
             </div>
           </motion.div>
         </div>
@@ -114,7 +154,7 @@ export default function ProductCard({
 
       {/* Product Info */}
       <div className="p-4">
-        {/* Category */}
+        {/* Category and Rating */}
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs text-muted-foreground uppercase tracking-wide">
             {product.category}
@@ -144,34 +184,73 @@ export default function ProductCard({
           )}
         </div>
 
-        {/* Sizes */}
-        <div className="flex items-center gap-1 mb-4">
-          <span className="text-xs text-muted-foreground">Tailles:</span>
-          <div className="flex gap-1">
-            {product.sizes.slice(0, 3).map((size) => (
-              <span
-                key={size}
-                className="text-xs px-2 py-1 bg-muted rounded text-muted-foreground"
-              >
-                {size}
-              </span>
-            ))}
-            {product.sizes.length > 3 && (
-              <span className="text-xs px-2 py-1 bg-muted rounded text-muted-foreground">
-                +{product.sizes.length - 3}
-              </span>
-            )}
+        {/* Enhanced Sizes with Size Guide */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-1">
+            <span className="text-xs text-muted-foreground">Tailles:</span>
+            <div className="flex gap-1">
+              {product.sizes.slice(0, 3).map((size) => (
+                <span
+                  key={size}
+                  className="text-xs px-2 py-1 bg-muted rounded text-muted-foreground"
+                >
+                  {size}
+                </span>
+              ))}
+              {product.sizes.length > 3 && (
+                <span className="text-xs px-2 py-1 bg-muted rounded text-muted-foreground">
+                  +{product.sizes.length - 3}
+                </span>
+              )}
+            </div>
           </div>
+          <button
+            onClick={onSizeGuide}
+            className="text-xs text-primary hover:underline flex items-center gap-1"
+            title="Guide des tailles"
+          >
+            <Ruler className="w-3 h-3" />
+            Guide
+          </button>
         </div>
 
-        {/* Add to Cart Button */}
-        <button
-          onClick={handleAddToCart}
-          className="w-full bg-primary text-primary-foreground py-2 px-4 rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 flex items-center justify-center gap-2"
-        >
-          <ShoppingCart className="w-4 h-4" />
-          Ajouter au panier
-        </button>
+        {/* Material Info */}
+        {product.material && (
+          <div className="mb-4">
+            <span className="text-xs text-muted-foreground">
+              {product.material}
+            </span>
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        <div className="space-y-2">
+          <button
+            onClick={handleAddToCart}
+            className="w-full bg-primary text-primary-foreground py-2 px-4 rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 flex items-center justify-center gap-2"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            Ajouter au panier
+          </button>
+
+          {/* Secondary Actions */}
+          <div className="flex gap-2">
+            <button
+              onClick={handleQuickView}
+              className="flex-1 py-2 px-3 border border-border rounded-lg text-sm hover:bg-muted transition-colors flex items-center justify-center gap-1"
+            >
+              <Eye className="w-3 h-3" />
+              Voir 3D
+            </button>
+            <button
+              onClick={handleCompare}
+              className="flex-1 py-2 px-3 border border-border rounded-lg text-sm hover:bg-muted transition-colors flex items-center justify-center gap-1"
+            >
+              <Scale className="w-3 h-3" />
+              Comparer
+            </button>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
