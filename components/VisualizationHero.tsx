@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Play, Eye, Scale, Heart } from "lucide-react";
+import { ArrowRight, Factory, Users, Truck, Shield } from "lucide-react";
 import { getFeaturedProducts } from "@/lib/products";
 
 export default function VisualizationHero() {
@@ -13,21 +13,21 @@ export default function VisualizationHero() {
 
   const features = [
     {
-      icon: Eye,
-      title: "Visualisation 360°",
-      description: "Explorez nos gants sous tous les angles",
+      icon: Factory,
+      title: "Production en Gros",
+      description: "Commandes en volume avec délais optimisés",
       color: "from-blue-500/20 to-purple-500/20",
     },
     {
-      icon: Scale,
-      title: "Comparaison Intelligente",
-      description: "Comparez facilement nos modèles",
+      icon: Users,
+      title: "Personnalisation",
+      description: "Vos logos et couleurs sur tous nos produits",
       color: "from-green-500/20 to-blue-500/20",
     },
     {
-      icon: Heart,
-      title: "Recommandations",
-      description: "Découvrez ce qui vous convient",
+      icon: Truck,
+      title: "Supply Chain",
+      description: "Chaîne d'approvisionnement fiable et optimisée",
       color: "from-red-500/20 to-pink-500/20",
     },
   ];
@@ -38,7 +38,7 @@ export default function VisualizationHero() {
       <div className="absolute inset-0">
         <Image
           src="/images/hero/hero-bg.png"
-          alt="SoftArmor luxury leather gloves background"
+          alt="SoftArmor premium sports gloves manufacturing background"
           fill
           priority
           quality={95}
@@ -63,8 +63,8 @@ export default function VisualizationHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Eye className="w-4 h-4" />
-              Visualisation Interactive
+              <Factory className="w-4 h-4" />
+              Fabrication & Personnalisation
             </motion.div>
 
             {/* Main Heading */}
@@ -74,9 +74,9 @@ export default function VisualizationHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <span className="text-foreground">Découvrez</span>
+              <span className="text-foreground">Solutions</span>
               <br />
-              <span className="text-primary font-medium">en 3D</span>
+              <span className="text-primary font-medium">Professionnelles</span>
             </motion.h1>
 
             {/* Subtitle */}
@@ -86,9 +86,10 @@ export default function VisualizationHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Explorez notre collection de gants en cuir français avec nos
-              outils de visualisation avancés. Comparez, mesurez et trouvez la
-              taille parfaite.
+              Votre partenaire de confiance pour l'achat de gants de sport
+              premium, avec une spécialisation dans les gants de moto.
+              Production sur mesure en grande quantité pour marques, revendeurs
+              et professionnels.
             </motion.p>
 
             {/* Interactive Features */}
@@ -140,13 +141,15 @@ export default function VisualizationHero() {
                 href="/products"
                 className="elegant-button bg-primary text-primary-foreground px-8 py-4 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 group"
               >
-                Explorer la Collection
+                Commander en Ligne
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
-              <button className="elegant-button bg-transparent border border-primary text-primary px-8 py-4 rounded-lg font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-2">
-                <Play className="w-5 h-5" />
-                Voir la Démo
-              </button>
+              <Link
+                href="/contact"
+                className="elegant-button bg-transparent border border-primary text-primary px-8 py-4 rounded-lg font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                Demande de Devis
+              </Link>
             </motion.div>
           </motion.div>
 
@@ -209,7 +212,7 @@ export default function VisualizationHero() {
                   ease: "linear",
                 }}
               >
-                <Eye className="w-6 h-6 text-primary" />
+                <Factory className="w-6 h-6 text-primary" />
               </motion.div>
 
               <motion.div
@@ -224,7 +227,7 @@ export default function VisualizationHero() {
                   ease: "easeInOut",
                 }}
               >
-                <Scale className="w-5 h-5 text-secondary-foreground" />
+                <Users className="w-5 h-5 text-secondary-foreground" />
               </motion.div>
             </div>
 

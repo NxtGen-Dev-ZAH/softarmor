@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Award, Star } from "lucide-react";
+import { Factory, Award, Star, Users, Truck, Shield } from "lucide-react";
 import { getFeaturedProducts } from "@/lib/products";
 import ProductGrid from "./ui/ProductGrid";
 
@@ -77,9 +77,9 @@ export default function FeaturedProducts() {
                 ease: "easeInOut",
               }}
             >
-              <Heart className="w-8 h-8 text-primary fill-current" />
+              <Factory className="w-8 h-8 text-primary fill-current" />
             </motion.div>
-            Nos Coups de Cœur
+            Produits Vedettes
           </motion.h2>
 
           <motion.p
@@ -89,7 +89,7 @@ export default function FeaturedProducts() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Une sélection de nos produits les plus appréciés
+            Nos modèles les plus demandés par les professionnels
           </motion.p>
 
           {/* Decorative elements */}
@@ -115,7 +115,7 @@ export default function FeaturedProducts() {
           viewAllHref="/products"
         />
 
-        {/* Trust Indicators */}
+        {/* Professional Services Indicators */}
         <motion.div
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
           initial={{ opacity: 0, y: 30 }}
@@ -131,31 +131,31 @@ export default function FeaturedProducts() {
               Qualité Premium
             </h3>
             <p className="text-sm text-muted-foreground">
-              Cuir français de première qualité
+              Matériaux de première qualité et finition professionnelle
             </p>
           </div>
 
           <div className="text-center">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Star className="w-8 h-8 text-primary" />
+              <Users className="w-8 h-8 text-primary" />
             </div>
             <h3 className="font-medium text-foreground mb-2">
-              Artisanat Français
+              Personnalisation
             </h3>
             <p className="text-sm text-muted-foreground">
-              Savoir-faire traditionnel depuis 1985
+              Vos logos et couleurs sur tous nos produits
             </p>
           </div>
 
           <div className="text-center">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Heart className="w-8 h-8 text-primary" />
+              <Truck className="w-8 h-8 text-primary" />
             </div>
             <h3 className="font-medium text-foreground mb-2">
-              Satisfaction Garantie
+              Livraison Optimisée
             </h3>
             <p className="text-sm text-muted-foreground">
-              Retours gratuits sous 30 jours
+              Délais de production et livraison garantis
             </p>
           </div>
         </motion.div>

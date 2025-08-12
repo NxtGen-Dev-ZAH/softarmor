@@ -12,28 +12,28 @@ import {
   Twitter,
   Linkedin,
   ArrowUp,
-  Heart,
+  Factory,
   Sparkles,
   Check,
 } from "lucide-react";
 
 const footerSections = [
   {
-    title: "Collections",
+    title: "Services",
     links: [
-      { name: "Gants Hommes", href: "/products?category=men" },
-      { name: "Gants Femmes", href: "/products?category=women" },
-      { name: "Gants d'Hiver", href: "/products?category=winter" },
-      { name: "Gants de Conduite", href: "/products?category=driving" },
+      { name: "Personnalisation", href: "/customization" },
+      { name: "Commandes en Gros", href: "/wholesale" },
+      { name: "Gants de Moto", href: "/products?category=motorcycle" },
+      { name: "Gants de Sport", href: "/products?category=sports" },
     ],
   },
   {
-    title: "Aide",
+    title: "Support",
     links: [
-      { name: "Contact", href: "/contact" },
+      { name: "Contact Pro", href: "/contact" },
       { name: "À Propos", href: "/about" },
-      { name: "Livraison", href: "/shipping" },
-      { name: "Retours", href: "/returns" },
+      { name: "Devis Personnalisé", href: "/quote" },
+      { name: "Support Technique", href: "/support" },
     ],
   },
   {
@@ -42,7 +42,7 @@ const footerSections = [
       { name: "Conditions Générales", href: "/terms" },
       { name: "Politique de Confidentialité", href: "/privacy" },
       { name: "Mentions Légales", href: "/legal" },
-      { name: "CGV", href: "/cgv" },
+      { name: "CGV Pro", href: "/cgv" },
     ],
   },
 ];
@@ -153,7 +153,7 @@ export default function Footer() {
                 SoftArmor
               </motion.span>
 
-              {/* Floating heart */}
+              {/* Floating factory icon */}
               <motion.div
                 className="absolute -top-1 -right-6 opacity-60"
                 animate={{
@@ -166,7 +166,7 @@ export default function Footer() {
                   ease: "easeInOut",
                 }}
               >
-                <Heart className="w-4 h-4 fill-current" />
+                <Factory className="w-4 h-4 fill-current" />
               </motion.div>
             </motion.div>
 
@@ -177,9 +177,9 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              L'excellence française dans l'art du gant en cuir depuis 1995.
-              Chaque pièce est confectionnée avec passion par nos artisans
-              qualifiés.
+              Votre partenaire de confiance pour l'achat de gants de sport
+              premium, avec une spécialisation dans les gants de moto.
+              Fabrication et personnalisation en gros pour professionnels.
             </motion.p>
 
             {/* Contact info */}
@@ -216,7 +216,7 @@ export default function Footer() {
               >
                 <Mail className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
                 <span className="group-hover:text-accent transition-colors">
-                  contact@softarmor.fr
+                  info@softarmor.fr
                 </span>
               </motion.div>
             </motion.div>
@@ -329,7 +329,7 @@ export default function Footer() {
               className="font-serif text-lg font-medium relative"
               whileHover={{ color: "#dcd2c1" }}
             >
-              Newsletter
+              Newsletter Pro
               <motion.div
                 className="absolute -bottom-1 left-0 h-0.5 bg-accent"
                 initial={{ width: 0 }}
@@ -345,7 +345,8 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Restez informé de nos dernières collections et offres exclusives.
+              Recevez nos dernières innovations et offres spéciales pour
+              professionnels.
             </motion.p>
 
             <motion.form
@@ -358,7 +359,7 @@ export default function Footer() {
               <div className="flex gap-2">
                 <input
                   type="email"
-                  placeholder="Votre email"
+                  placeholder="Votre email professionnel"
                   className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded text-sm placeholder:text-white/60 focus:outline-none focus:border-accent transition-colors"
                 />
                 <motion.button
@@ -380,7 +381,7 @@ export default function Footer() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Check className="w-3 h-3" />
-              <span>Pas de spam, désabonnement facile</span>
+              <span>Contenu professionnel uniquement</span>
             </motion.div>
           </motion.div>
         </div>
@@ -400,7 +401,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.7 }}
             >
-              &copy; 2024 SoftArmor. Tous droits réservés. Fait avec{" "}
+              &copy; 2024 SoftArmor. Tous droits réservés. Fabrication{" "}
               <motion.span
                 animate={{
                   scale: [1, 1.2, 1],
@@ -412,7 +413,7 @@ export default function Footer() {
                   ease: "easeInOut",
                 }}
               >
-                ❤️
+                🏭
               </motion.span>{" "}
               en France.
             </motion.p>

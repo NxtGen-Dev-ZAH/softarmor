@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Star, Shield, Truck } from "lucide-react";
+import { ArrowRight, Star, Shield, Truck, Factory, Users } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { getFeaturedProducts } from "@/lib/products";
 
@@ -57,7 +57,7 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <Image
           src="/images/hero/hero-bg.png"
-          alt="SoftArmor luxury leather gloves background"
+          alt="SoftArmor premium sports gloves manufacturing background"
           fill
           priority
           quality={95}
@@ -82,8 +82,8 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Star className="w-4 h-4 fill-current" />
-              Artisanat français depuis 1985
+              <Factory className="w-4 h-4 fill-current" />
+              Fabrication & Personnalisation en Gros
             </motion.div>
 
             {/* Main Heading */}
@@ -93,9 +93,9 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <span className="text-foreground">Gants en Cuir</span>
+              <span className="text-foreground">Gants de Sport</span>
               <br />
-              <span className="text-primary font-medium">d'Exception</span>
+              <span className="text-primary font-medium">Haut de Gamme</span>
             </motion.h1>
 
             {/* Subtitle */}
@@ -105,30 +105,62 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Découvrez notre collection de gants en cuir français de première
-              qualité. Élégance, confort et savoir-faire artisanal pour toutes
-              les saisons.
+              Votre partenaire de confiance pour l'achat de gants de sport
+              premium, avec une spécialisation dans les gants de moto.
+              Production sur mesure en grande quantité pour marques, revendeurs
+              et professionnels.
             </motion.p>
+
+            {/* Key Services */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <div className="flex items-center gap-3 p-3 bg-primary/5 rounded-lg">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Star className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-medium text-sm">Qualité Supérieure</h4>
+                  <p className="text-xs text-muted-foreground">
+                    Confort, résistance et performance
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-3 bg-primary/5 rounded-lg">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Users className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-medium text-sm">Personnalisation</h4>
+                  <p className="text-xs text-muted-foreground">
+                    Votre logo et vos couleurs
+                  </p>
+                </div>
+              </div>
+            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
               <Link
                 href="/products"
                 className="elegant-button bg-primary text-primary-foreground px-8 py-4 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 group"
               >
-                Découvrir la Collection
+                Commander en Ligne
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
               <Link
-                href="/about"
+                href="/contact"
                 className="elegant-button bg-transparent border border-primary text-primary px-8 py-4 rounded-lg font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
-                Notre Histoire
+                Demande de Devis
               </Link>
             </motion.div>
 
@@ -141,11 +173,11 @@ export default function HeroSection() {
             >
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Shield className="w-4 h-4" />
-                <span>Garantie 2 ans</span>
+                <span>Production fiable</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Truck className="w-4 h-4" />
-                <span>Livraison gratuite</span>
+                <span>Livraison optimisée</span>
               </div>
             </motion.div>
           </motion.div>

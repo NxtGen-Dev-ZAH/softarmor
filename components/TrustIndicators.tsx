@@ -2,39 +2,48 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Truck, Award, Star, Check, Sparkles } from "lucide-react";
+import {
+  Shield,
+  Truck,
+  Award,
+  Star,
+  Check,
+  Sparkles,
+  Factory,
+  Users,
+} from "lucide-react";
 
 const trustItems = [
   {
-    icon: Shield,
-    title: "Qualité Garantie",
-    description: "Cuir authentique et finitions premium",
+    icon: Factory,
+    title: "Production Fiable",
+    description: "Chaîne de production optimisée et délais garantis",
     stat: "100%",
-    statLabel: "Satisfaction",
+    statLabel: "Fiabilité",
     color: "from-blue-500 to-blue-600",
   },
   {
-    icon: Truck,
-    title: "Livraison Gratuite",
-    description: "Dès 50€ d'achat en France métropolitaine",
+    icon: Users,
+    title: "Personnalisation",
+    description: "Vos logos et couleurs sur tous nos produits",
     stat: "24h",
-    statLabel: "Expédition",
+    statLabel: "Devis",
     color: "from-green-500 to-green-600",
   },
   {
     icon: Award,
-    title: "Artisanat Français",
-    description: "Fabriqué en France par nos artisans",
-    stat: "30+",
-    statLabel: "Années",
+    title: "Qualité Premium",
+    description: "Matériaux de première qualité et finition professionnelle",
+    stat: "500+",
+    statLabel: "Clients Pro",
     color: "from-purple-500 to-purple-600",
   },
   {
-    icon: Star,
-    title: "Satisfaction Client",
-    description: "Plus de 1000 clients satisfaits",
-    stat: "4.9/5",
-    statLabel: "Note moyenne",
+    icon: Truck,
+    title: "Livraison Optimisée",
+    description: "Supply chain dédiée pour commandes en gros",
+    stat: "48h",
+    statLabel: "Livraison",
     color: "from-yellow-500 to-yellow-600",
   },
 ];

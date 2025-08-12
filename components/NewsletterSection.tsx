@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Send, Check, Sparkles, Heart } from "lucide-react";
+import { Mail, Send, Check, Sparkles, Factory, Users } from "lucide-react";
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const [heartPositions, setHeartPositions] = useState<
+  const [factoryPositions, setFactoryPositions] = useState<
     Array<{ left: string; top: string }>
   >([]);
 
@@ -20,7 +20,7 @@ export default function NewsletterSection() {
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
     }));
-    setHeartPositions(positions);
+    setFactoryPositions(positions);
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -46,15 +46,15 @@ export default function NewsletterSection() {
     >
       {/* Animated background elements */}
       <div className="absolute inset-0">
-        {/* Floating hearts */}
+        {/* Floating factory icons */}
         {isClient &&
-          heartPositions.map((heart, i) => (
+          factoryPositions.map((factory, i) => (
             <motion.div
               key={i}
               className="absolute opacity-10"
               style={{
-                left: heart.left,
-                top: heart.top,
+                left: factory.left,
+                top: factory.top,
               }}
               animate={{
                 y: [0, -30, 0],
@@ -69,7 +69,7 @@ export default function NewsletterSection() {
                 delay: i * 0.3,
               }}
             >
-              <Heart className="w-6 h-6 fill-current" />
+              <Factory className="w-6 h-6 fill-current" />
             </motion.div>
           ))}
 
@@ -148,7 +148,7 @@ export default function NewsletterSection() {
               }
               transition={{ duration: 2, ease: "easeInOut" }}
             >
-              Restez Informé de nos Nouveautés
+              Restez Informé de nos Services Pro
             </motion.span>
 
             {/* Floating mail icon */}
@@ -175,8 +175,8 @@ export default function NewsletterSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Inscrivez-vous à notre newsletter pour recevoir nos dernières
-            collections et offres exclusives.
+            Recevez nos dernières innovations, offres spéciales et opportunités
+            de personnalisation pour professionnels.
           </motion.p>
         </motion.div>
 
@@ -207,7 +207,7 @@ export default function NewsletterSection() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Votre adresse email"
+                    placeholder="Votre email professionnel"
                     className="w-full px-4 py-3 rounded-none bg-white text-foreground border-0 focus:ring-2 focus:ring-accent transition-all duration-300 placeholder:text-muted-foreground"
                     required
                   />
@@ -228,7 +228,7 @@ export default function NewsletterSection() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      Email
+                      Email Pro
                     </motion.div>
                   )}
                 </motion.div>
@@ -305,7 +305,7 @@ export default function NewsletterSection() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
                   >
-                    Merci pour votre inscription !
+                    Inscription réussie !
                   </motion.h3>
 
                   <motion.p
@@ -314,7 +314,7 @@ export default function NewsletterSection() {
                     animate={{ opacity: 0.9 }}
                     transition={{ delay: 0.5 }}
                   >
-                    Vous recevrez bientôt nos dernières nouveautés.
+                    Vous recevrez nos offres professionnelles et innovations.
                   </motion.p>
                 </motion.div>
               </motion.div>
@@ -335,7 +335,7 @@ export default function NewsletterSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Check className="w-4 h-4" />
-            <span>Pas de spam</span>
+            <span>Contenu professionnel</span>
           </motion.div>
 
           <motion.div
@@ -343,7 +343,7 @@ export default function NewsletterSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Check className="w-4 h-4" />
-            <span>Désabonnement facile</span>
+            <span>Offres spéciales</span>
           </motion.div>
 
           <motion.div
@@ -351,7 +351,7 @@ export default function NewsletterSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Check className="w-4 h-4" />
-            <span>Offres exclusives</span>
+            <span>Innovations produits</span>
           </motion.div>
         </motion.div>
 

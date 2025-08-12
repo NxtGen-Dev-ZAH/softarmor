@@ -4,8 +4,43 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { categories } from "@/lib/products";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Factory, Users, Shield } from "lucide-react";
+
+// Updated categories for B2B focus
+const b2bCategories = [
+  {
+    id: "customization",
+    name: "Personnalisation",
+    slug: "personnalisation",
+    image: "/images/categories/men-gloves.jpg",
+    description: "Vos logos et couleurs sur nos gants premium",
+    icon: Users,
+  },
+  {
+    id: "wholesale",
+    name: "Commandes en Gros",
+    slug: "commandes-en-gros",
+    image: "/images/categories/women-gloves.jpg",
+    description: "Production en volume avec délais optimisés",
+    icon: Factory,
+  },
+  {
+    id: "motorcycle",
+    name: "Gants de Moto",
+    slug: "gants-de-moto",
+    image: "/images/categories/driving-gloves.jpg",
+    description: "Spécialisation en gants de motocycliste",
+    icon: Shield,
+  },
+  {
+    id: "sports",
+    name: "Gants de Sport",
+    slug: "gants-de-sport",
+    image: "/images/categories/winter-gloves.jpg",
+    description: "Performance et confort pour tous sports",
+    icon: Sparkles,
+  },
+];
 
 export default function CategoriesSection() {
   return (
@@ -64,7 +99,7 @@ export default function CategoriesSection() {
               ease: "easeInOut",
             }}
           >
-            Nos Collections
+            Nos Services
           </motion.h2>
           <motion.p
             className="section-subtitle"
@@ -73,13 +108,13 @@ export default function CategoriesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Trouvez les gants parfaits pour chaque occasion
+            Solutions professionnelles pour marques, revendeurs et distributeurs
           </motion.p>
         </motion.div>
 
         {/* Categories grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((category, index) => (
+          {b2bCategories.map((category, index) => (
             <CategoryCard key={category.id} category={category} index={index} />
           ))}
         </div>
@@ -93,11 +128,11 @@ export default function CategoriesSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <Link
-            href="/products"
+            href="/contact"
             className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 group"
           >
             <Sparkles className="w-5 h-5" />
-            Découvrir Toutes les Collections
+            Demander un Devis Personnalisé
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
           </Link>
         </motion.div>
@@ -140,6 +175,8 @@ function CategoryCard({ category, index }: { category: any; index: number }) {
     mouseY.set(0);
   };
 
+  const IconComponent = category.icon;
+
   return (
     <motion.div
       ref={cardRef}
@@ -165,7 +202,7 @@ function CategoryCard({ category, index }: { category: any; index: number }) {
       onMouseLeave={handleMouseLeave}
       className="category-card group cursor-pointer perspective-1000"
     >
-      <Link href={`/products?category=${category.slug}`}>
+      <Link href={`/${category.slug}`}>
         <div className="relative aspect-[4/5] bg-gradient-to-br from-accent/20 to-primary/10 rounded-xl overflow-hidden mb-4">
           {/* Category image */}
           <motion.div
@@ -203,7 +240,8 @@ function CategoryCard({ category, index }: { category: any; index: number }) {
               stiffness: 300,
             }}
           >
-            <div className="bg-white/90 backdrop-blur-sm text-primary px-3 py-1 rounded-full text-sm font-medium">
+            <div className="bg-white/90 backdrop-blur-sm text-primary px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+              <IconComponent className="w-3 h-3" />
               {category.name}
             </div>
           </motion.div>
