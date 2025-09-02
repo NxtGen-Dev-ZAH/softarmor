@@ -1,0 +1,105 @@
+---
+alwaysApply: true
+---
+# 🧤 SoftArmor – Leather Gloves Ecommerce Frontend (Next.js)
+
+## 🎯 Objective:
+Build the **frontend** of an e-commerce website using **Next.js**, named **SoftArmor**, which sells **high-quality leather gloves**. The website should have a **minimalist, sleek, and modern French-inspired aesthetic** with high usability and elegance. 
+
+## 🎨 Design & Theme:
+- **Design Style**: Minimalist, clean layout, elegant typography, generous white space
+- **Inspiration**: French boutique aesthetics (Chanel, A.P.C., Maison Margiela)
+- **Color Palette**: 
+  - Background: `#f9f9f9` or soft white
+  - Primary: Deep brown (`#3e2c23`), Espresso black
+  - Accent: Soft beige (`#dcd2c1`), subtle gold for elegance
+- **Font Suggestions**: Use serif fonts like `Playfair Display`, or modern sans-serif like `Inter`, `Outfit`, or `Manrope`
+- **Language Support**: Default French language
+- **Layout**: Grid-based, responsive, animated, cursor responsive with mobile-first approach
+- **Dark mode** (optional)
+
+## 🧱 Tech Stack:
+- **Next.js** with App Router
+- **TailwindCSS** for styling
+- **TypeScript**
+- **ShadCN/ui** for reusable UI components
+- **next/image** for optimized images
+- **Lucide Icons**
+- **Framer Motion** for subtle animations
+- Dummy product data (or static JSON for now)
+- Add SEO meta tags (using `next/head`)
+
+## 🛒 Pages & Components to Implement:
+
+### 1. **Home Page** (`/`)
+- Hero section with full-width image showcasing premium leather gloves
+- Call to action: "Shop Collection"
+- Featured categories (Men / Women / Winter / Driving Gloves)
+- Testimonials or trust badges
+- Footer with links, branding, and minimalistic newsletter input
+
+### 2. **Products Listing Page** (`/products`)
+- Grid display of all leather glove products
+- Product Card:
+  - Product image
+  - Title
+  - Price
+  - Quick view button
+- Filters sidebar (Color, Size, Type)
+- Sort by: Price (low-high), Popularity, Newest
+
+### 3. **Product Detail Page** (`/products/[slug]`)
+- Large product image gallery (zoomable)
+- Title, Price, Description, Available Sizes
+- "Add to Cart" button
+- Fabric/care/quality info (leather origin, type)
+- Related products slider
+
+### 4. **Cart Page** (`/cart`)
+- List of items added
+- Update quantity / remove
+- Subtotal + VAT/tax estimation (France)
+- Checkout button
+
+### 5. **Checkout Page** (`/checkout`)
+- Billing/shipping details
+- Contact + delivery form
+- Order summary
+- Place order (dummy for now)
+
+### 6. **About Page** (`/about`)
+- Story of SoftArmor
+- Philosophy, materials, sustainability
+- Artisan or manufacturing story (tailor for French market)
+
+### 7. **Contact Page** (`/contact`)
+- Email, phone, business address in France
+- Embedded map (optional)
+- Simple form: Name, Email, Message
+
+### 8. **404 Page** – Branded custom "Page Not Found" with CTA back to home/shop.
+
+## 🧩 Components Required:
+- `Header`: Logo, navigation menu, cart icon, language switcher (EN/FR)
+- `Footer`: Company info, links, socials
+- `ProductCard`
+- `ProductGallery`
+- `CartSidebar` (optional)
+- `Button`, `Badge`, `Sonner(toast)`, `Input`, `Modal` components (use shadcn/ui)
+
+## 📦 Data Model (Static JSON or mock):
+```json
+{
+  "id": "glove-001",
+  "name": "Classic Winter Leather Gloves",
+  "price": 89.99,
+  "currency": "EUR",
+  "description": "Premium full-grain leather gloves lined with soft fleece for cold French winters.",
+  "sizes": ["S", "M", "L", "XL"],
+  "category": "Winter",
+  "images": [
+    "/images/gloves/classic-1.jpg",
+    "/images/gloves/classic-2.jpg"
+  ],
+  "slug": "classic-winter-leather-gloves"
+}
