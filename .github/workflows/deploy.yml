@@ -1,0 +1,119 @@
+name: Deploy SoftArmor to Production Server
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: 'package-lock.json'
+
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run linting
+      run: npm run lint
+      
+    - name: Build Next.js application
+      run: npm run build
+        
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-public-key: ${{ secrets.SSH_PUBLIC_KEY }}
+        
+    - name: Add server to known hosts
+      run: |
+        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+        
+    - name: Copy source code to server
+      run: |
+        # Copy the source code (excluding build artifacts and dependencies)
+        rsync -avz --delete \
+          --exclude='.git' \
+          --exclude='node_modules' \
+          --exclude='.next' \
+          --exclude='.env*' \
+          ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/home/dsazuser/softarmor-frontend/
+          
+    - name: Deploy to server
+      run: |
+        timeout 300s ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+          set -e
+          echo '🚀 Starting SoftArmor deployment...'
+          
+          # Navigate to project directory
+          cd /home/dsazuser/softarmor-frontend
+          
+          # Install dependencies
+          echo '📦 Installing dependencies...'
+          npm ci --production=false
+          
+          # Build the application
+          echo '🔨 Building SoftArmor application...'
+          npm run build
+          
+          # Restart PM2 process (running on port 3010)
+          echo '🔄 Restarting PM2 process for SoftArmor...'
+          pm2 restart softarmor-frontend || pm2 start npm --name softarmor-frontend -- start
+          
+          # Test nginx configuration (skip if sudo requires password)
+          echo '🔍 Testing nginx configuration...'
+          if sudo -n nginx -t 2>/dev/null; then
+            echo '✅ Nginx configuration is valid'
+          else
+            echo '⚠️ Nginx config test skipped (requires password or not accessible)'
+          fi
+          
+          # Reload nginx (skip if sudo requires password)
+          echo '🔄 Reloading nginx...'
+          if sudo -n systemctl reload nginx 2>/dev/null; then
+            echo '✅ Nginx reloaded successfully'
+          else
+            echo '⚠️ Nginx reload skipped (requires password or not accessible)'
+          fi
+          
+          # Show PM2 status
+          echo '📊 PM2 Status for SoftArmor:'
+          pm2 status
+          
+          # Show recent logs (non-blocking)
+          echo '📋 Recent SoftArmor logs:'
+          pm2 logs softarmor-frontend --lines 10 --nostream || echo 'Logs display completed'
+          
+          echo '✅ SoftArmor deployment completed successfully!'
+        "
+        
+    - name: Health check
+      run: |
+        echo "🔍 Performing health check for SoftArmor..."
+        sleep 10
+        
+        if curl -f -s https://softarmor.fr > /dev/null; then
+          echo "✅ Health check passed - SoftArmor is responding"
+        else
+          echo "❌ Health check failed - SoftArmor may not be responding"
+          exit 1
+        fi
+        
+    - name: Notify deployment status
+      if: always()
+      run: |
+        if [ "${{ job.status }}" == "success" ]; then
+          echo "🎉 SoftArmor deployment to softarmor.fr completed successfully!"
+        else
+          echo "❌ SoftArmor deployment failed. Check the logs above for details."
+        fi
