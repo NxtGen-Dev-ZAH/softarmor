@@ -1,15 +1,11 @@
 export interface Product {
   id: string;
   name: string;
-  price: number;
-  originalPrice?: number;
-  currency: string;
   description: string;
   sizes: string[];
   category: string;
   images: string[];
   slug: string;
-  isOnSale?: boolean;
   isFeatured?: boolean;
   material?: string;
   origin?: string;
@@ -60,9 +56,6 @@ export const products: Product[] = [
   {
     id: "glove-001",
     name: "Gants de Moto Premium",
-    price: 89.99,
-    originalPrice: 129.99,
-    currency: "EUR",
     description: "Gants de motocycliste haut de gamme avec protection renforcée, ventilation et adhérence optimale. Idéal pour les professionnels et passionnés.",
     sizes: ["S", "M", "L", "XL", "XXL"],
     category: "Gants de Moto",
@@ -71,7 +64,6 @@ export const products: Product[] = [
       "/images/products/classic-winter-2.jpg"
     ],
     slug: "gants-moto-premium",
-    isOnSale: true,
     isFeatured: true,
     material: "Cuir pleine fleur renforcé",
     origin: "Fabriqué en France",
@@ -81,8 +73,6 @@ export const products: Product[] = [
   {
     id: "glove-002", 
     name: "Gants de Sport Performance",
-    price: 79.99,
-    currency: "EUR",
     description: "Gants de sport haute performance avec technologie d'évacuation de l'humidité et adhérence optimale pour tous types d'activités sportives.",
     sizes: ["XS", "S", "M", "L", "XL"],
     category: "Gants de Sport",
@@ -100,8 +90,6 @@ export const products: Product[] = [
   {
     id: "glove-003",
     name: "Gants de Moto Racing",
-    price: 95.99,
-    currency: "EUR", 
     description: "Gants de moto racing avec protection renforcée aux articulations et matériaux techniques pour la compétition et la performance.",
     sizes: ["M", "L", "XL", "XXL"],
     category: "Gants de Moto",
@@ -118,9 +106,6 @@ export const products: Product[] = [
   {
     id: "glove-004",
     name: "Gants d'Hiver Pro",
-    price: 69.99,
-    originalPrice: 99.99,
-    currency: "EUR",
     description: "Gants d'hiver professionnels avec isolation thermique avancée et protection contre l'humidité pour les activités extérieures.",
     sizes: ["S", "M", "L", "XL", "XXL"],
     category: "Gants d'Hiver", 
@@ -129,7 +114,6 @@ export const products: Product[] = [
       "/images/products/winter-pro-2.jpg"
     ],
     slug: "gants-hiver-pro",
-    isOnSale: true,
     material: "Cuir et Gore-Tex",
     origin: "Technologie française",
     minOrderQuantity: 50,
@@ -138,8 +122,6 @@ export const products: Product[] = [
   {
     id: "glove-005",
     name: "Gants de Conduite Elite",
-    price: 109.99,
-    currency: "EUR",
     description: "Gants de conduite élite avec adhérence parfaite et confort optimal pour les professionnels du transport et de la logistique.",
     sizes: ["M", "L", "XL", "XXL"],
     category: "Gants de Conduite",
@@ -157,8 +139,6 @@ export const products: Product[] = [
   {
     id: "glove-006",
     name: "Gants de Sport Tactiques",
-    price: 59.99,
-    currency: "EUR",
     description: "Gants de sport tactiques avec protection renforcée et adhérence optimale pour les activités de sécurité et défense.",
     sizes: ["S", "M", "L", "XL"],
     category: "Gants de Sport",
@@ -175,8 +155,6 @@ export const products: Product[] = [
   {
     id: "glove-007",
     name: "Gants de Moto Tourisme",
-    price: 149.99,
-    currency: "EUR",
     description: "Gants de moto tourisme avec protection complète et confort maximal pour les longs trajets et voyages.",
     sizes: ["S", "M", "L", "XL", "XXL"],
     category: "Gants de Moto",
@@ -194,9 +172,6 @@ export const products: Product[] = [
   {
     id: "glove-008",
     name: "Gants de Sport Fitness",
-    price: 129.99,
-    originalPrice: 179.99,
-    currency: "EUR",
     description: "Gants de fitness avec protection des articulations et adhérence optimale pour les salles de sport et activités fitness.",
     sizes: ["S", "M", "L", "XL"],
     category: "Gants de Sport",
@@ -205,7 +180,6 @@ export const products: Product[] = [
       "/images/products/sports-fitness-2.jpg"
     ],
     slug: "gants-sport-fitness",
-    isOnSale: true,
     material: "Cuir et néoprène",
     origin: "Fitness français",
     minOrderQuantity: 200,
@@ -214,8 +188,6 @@ export const products: Product[] = [
   {
     id: "glove-009",
     name: "Gants de Conduite Urbaine",
-    price: 89.99,
-    currency: "EUR",
     description: "Gants de conduite urbaine avec style moderne et confort quotidien pour les professionnels en ville.",
     sizes: ["S", "M", "L", "XL"],
     category: "Gants de Conduite",
@@ -232,8 +204,6 @@ export const products: Product[] = [
   {
     id: "glove-010",
     name: "Gants de Sport Outdoor",
-    price: 74.99,
-    currency: "EUR",
     description: "Gants de sport outdoor avec résistance aux intempéries et adhérence optimale pour les activités en extérieur.",
     sizes: ["S", "M", "L", "XL", "XXL"],
     category: "Gants de Sport",
@@ -250,9 +220,6 @@ export const products: Product[] = [
   {
     id: "glove-011",
     name: "Gants de Moto City",
-    price: 49.99,
-    originalPrice: 69.99,
-    currency: "EUR",
     description: "Gants de moto city avec style urbain et protection essentielle pour la conduite en ville.",
     sizes: ["S", "M", "L", "XL"],
     category: "Gants de Moto",
@@ -261,7 +228,6 @@ export const products: Product[] = [
       "/images/products/motorcycle-city-2.jpg"
     ],
     slug: "gants-moto-city",
-    isOnSale: true,
     material: "Cuir et mesh",
     origin: "Urban français",
     minOrderQuantity: 150,
@@ -270,8 +236,6 @@ export const products: Product[] = [
   {
     id: "glove-012",
     name: "Gants de Sport Indoor",
-    price: 39.99,
-    currency: "EUR",
     description: "Gants de sport indoor avec adhérence optimale et respirabilité pour les activités en salle.",
     sizes: ["S", "M", "L", "XL"],
     category: "Gants de Sport",
@@ -297,9 +261,6 @@ export function getProductsByCategory(category: string): Product[] {
   );
 }
 
-export function getSaleProducts(): Product[] {
-  return products.filter(product => product.isOnSale);
-}
 
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find(product => product.slug === slug);

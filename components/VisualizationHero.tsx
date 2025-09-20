@@ -189,9 +189,7 @@ export default function VisualizationHero() {
                           <h3 className="text-sm font-medium text-foreground line-clamp-1">
                             {product.name}
                           </h3>
-                          <p className="text-sm text-muted-foreground">
-                            {product.price.toFixed(2)}€
-                          </p>
+                          <p className="text-sm text-muted-foreground"></p>
                         </div>
                       </Link>
                     </motion.div>

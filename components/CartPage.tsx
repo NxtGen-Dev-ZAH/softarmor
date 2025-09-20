@@ -22,8 +22,6 @@ const mockCartItems = [
   {
     id: "glove-001",
     name: "Gants Classiques Hiver",
-    price: 89.99,
-    originalPrice: 129.99,
     size: "M",
     quantity: 1,
     image: "/images/products/classic-winter-1.jpg",
@@ -32,7 +30,6 @@ const mockCartItems = [
   {
     id: "glove-002",
     name: "Gants Élégants Femme",
-    price: 79.99,
     size: "S",
     quantity: 2,
     image: "/images/products/elegant-women-1.jpg",
@@ -59,29 +56,6 @@ export default function CartPage() {
 
   const removeItem = (itemId: string) => {
     setCartItems((prev) => prev.filter((item) => item.id !== itemId));
-  };
-
-  const getSubtotal = () => {
-    return cartItems.reduce((total, item) => {
-      const price = item.originalPrice ? item.originalPrice : item.price;
-      return total + price * item.quantity;
-    }, 0);
-  };
-
-  const getDiscount = () => {
-    return cartItems.reduce((total, item) => {
-      if (item.originalPrice) {
-        return total + (item.originalPrice - item.price) * item.quantity;
-      }
-      return total;
-    }, 0);
-  };
-
-  const getTotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
   };
 
   const handleCheckout = () => {
@@ -206,19 +180,8 @@ export default function CartPage() {
                           </button>
                         </div>
 
-                        {/* Price and Quantity */}
-                        <div className="flex items-center justify-between mt-4">
-                          <div className="flex items-center gap-2">
-                            <span className="text-lg font-semibold text-foreground">
-                              {item.price.toFixed(2)}€
-                            </span>
-                            {item.originalPrice && (
-                              <span className="text-sm text-muted-foreground line-through">
-                                {item.originalPrice.toFixed(2)}€
-                              </span>
-                            )}
-                          </div>
-
+                        {/* Quantity */}
+                        <div className="flex items-center justify-end mt-4">
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() =>
@@ -263,27 +226,13 @@ export default function CartPage() {
                 {/* Order Details */}
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Sous-total</span>
-                    <span>{getSubtotal().toFixed(2)}€</span>
+                    <span className="text-muted-foreground">Articles</span>
+                    <span>{cartItems.length}</span>
                   </div>
-
-                  {getDiscount() > 0 && (
-                    <div className="flex justify-between text-green-600">
-                      <span>Réduction</span>
-                      <span>-{getDiscount().toFixed(2)}€</span>
-                    </div>
-                  )}
 
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Livraison</span>
                     <span className="text-green-600">Gratuite</span>
-                  </div>
-
-                  <div className="border-t border-border/20 pt-4">
-                    <div className="flex justify-between text-lg font-semibold">
-                      <span>Total</span>
-                      <span>{getTotal().toFixed(2)}€</span>
-                    </div>
                   </div>
                 </div>
 
@@ -291,7 +240,7 @@ export default function CartPage() {
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Truck className="w-4 h-4" />
-                    <span>Livraison gratuite dès 50€</span>
+                    <span>Livraison gratuite</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Shield className="w-4 h-4" />

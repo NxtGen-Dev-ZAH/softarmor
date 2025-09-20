@@ -194,19 +194,9 @@ export default function Footer() {
                 className="flex items-center gap-3 group cursor-pointer"
                 whileHover={{ x: 5 }}
               >
-                <MapPin className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
-                <span className="group-hover:text-accent transition-colors">
-                  123 Rue de la Paix, 75001 Paris, France
-                </span>
-              </motion.div>
-
-              <motion.div
-                className="flex items-center gap-3 group cursor-pointer"
-                whileHover={{ x: 5 }}
-              >
                 <Phone className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
                 <span className="group-hover:text-accent transition-colors">
-                  +33 1 42 86 87 88
+                  +33 661 19 47 56
                 </span>
               </motion.div>
 

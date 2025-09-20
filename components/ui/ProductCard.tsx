@@ -70,19 +70,6 @@ export default function ProductCard({
       onHoverEnd={() => setIsHovered(false)}
     >
       {/* Sale Badge */}
-      {product.isOnSale && (
-        <div className="absolute top-3 left-3 z-10">
-          <span className="bg-destructive text-destructive-foreground px-2 py-1 rounded-full text-xs font-medium">
-            -
-            {Math.round(
-              ((product.originalPrice! - product.price) /
-                product.originalPrice!) *
-                100
-            )}
-            %
-          </span>
-        </div>
-      )}
 
       {/* Wishlist Button */}
       <button
@@ -171,18 +158,6 @@ export default function ProductCard({
             {product.name}
           </h3>
         </Link>
-
-        {/* Price */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-lg font-semibold text-foreground">
-            {product.price.toFixed(2)}€
-          </span>
-          {product.isOnSale && product.originalPrice && (
-            <span className="text-sm text-muted-foreground line-through">
-              {product.originalPrice.toFixed(2)}€
-            </span>
-          )}
-        </div>
 
         {/* Enhanced Sizes with Size Guide */}
         <div className="flex items-center justify-between mb-4">

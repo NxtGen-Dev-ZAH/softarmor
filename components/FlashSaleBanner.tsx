@@ -9,7 +9,7 @@ export default function FlashSaleBanner() {
     { text: "•", hidden: true },
     { text: "Jusqu'à 40% de réduction", hidden: true },
     { text: "•" },
-    { text: "Livraison gratuite dès 50€" },
+    { text: "Livraison gratuite" },
     { icon: Star, text: "" },
   ];
 

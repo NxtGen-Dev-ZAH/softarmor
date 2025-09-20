@@ -197,7 +197,7 @@ export default function HeroSection() {
               <h1 className="text-5xl lg:text-7xl font-serif font-light leading-tight">
                 <span className="text-foreground">Gants de Sport</span>
                 <br />
-                <span className="text-primary font-medium bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                <span className="font-medium bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                   Haut de Gamme
                 </span>
               </h1>
@@ -329,9 +329,6 @@ export default function HeroSection() {
                       <h3 className="text-sm font-semibold text-foreground line-clamp-1">
                         {product.name}
                       </h3>
-                      <p className="text-sm font-medium text-primary">
-                        {product.price.toFixed(2)}€
-                      </p>
                     </div>
                   </Link>
                 </motion.div>

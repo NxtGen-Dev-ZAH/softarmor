@@ -20,7 +20,6 @@ export default function ProductComparison({
   );
 
   const comparisonFeatures = [
-    { key: "price", label: "Prix", type: "price" },
     { key: "material", label: "Matériau", type: "text" },
     { key: "origin", label: "Origine", type: "text" },
     { key: "category", label: "Catégorie", type: "text" },
@@ -31,8 +30,6 @@ export default function ProductComparison({
 
   const getFeatureValue = (product: Product, feature: any) => {
     switch (feature.key) {
-      case "price":
-        return `${product.price.toFixed(2)}€`;
       case "sizes":
         return product.sizes.join(", ");
       case "boolean":
@@ -103,18 +100,6 @@ export default function ProductComparison({
                       <h3 className="font-medium text-sm line-clamp-2">
                         {product.name}
                       </h3>
-
-                      {/* Price */}
-                      <div className="flex items-center justify-center gap-2">
-                        <span className="text-lg font-semibold text-primary">
-                          {product.price.toFixed(2)}€
-                        </span>
-                        {product.isOnSale && product.originalPrice && (
-                          <span className="text-sm text-muted-foreground line-through">
-                            {product.originalPrice.toFixed(2)}€
-                          </span>
-                        )}
-                      </div>
                     </div>
                   </th>
                 ))}

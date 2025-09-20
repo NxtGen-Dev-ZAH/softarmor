@@ -157,12 +157,6 @@ function ProductCard({
   onHover: () => void;
   onLeave: () => void;
 }) {
-  const discountPercentage = product.originalPrice
-    ? Math.round(
-        ((product.originalPrice - product.price) / product.originalPrice) * 100
-      )
-    : 0;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -296,31 +290,6 @@ function ProductCard({
       >
         {product.name}
       </motion.h3>
-
-      {/* Price with animation */}
-      <div className="flex items-center space-x-2 mb-2">
-        <motion.span
-          className="text-lg font-semibold text-primary"
-          animate={isHovered ? { scale: 1.1 } : { scale: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          {product.price}€
-        </motion.span>
-        {product.originalPrice && (
-          <motion.span
-            className="text-sm text-muted-foreground line-through"
-            initial={{ opacity: 0.7 }}
-            animate={
-              isHovered
-                ? { opacity: 1, scale: 1.05 }
-                : { opacity: 0.7, scale: 1 }
-            }
-            transition={{ duration: 0.3 }}
-          >
-            {product.originalPrice}€
-          </motion.span>
-        )}
-      </div>
 
       <motion.p
         className="text-sm text-muted-foreground mb-3"

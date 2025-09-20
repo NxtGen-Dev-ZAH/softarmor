@@ -128,19 +128,6 @@ export default function ProductVisualization({
               </div>
 
               {/* Sale Badge */}
-              {product.isOnSale && (
-                <div className="absolute top-4 left-4">
-                  <span className="bg-destructive text-destructive-foreground px-3 py-1 rounded-full text-sm font-medium">
-                    -
-                    {Math.round(
-                      ((product.originalPrice! - product.price) /
-                        product.originalPrice!) *
-                        100
-                    )}
-                    %
-                  </span>
-                </div>
-              )}
             </div>
 
             {/* Thumbnail Gallery */}
@@ -168,16 +155,6 @@ export default function ProductVisualization({
               <h3 className="text-2xl font-serif font-light mb-2">
                 {product.name}
               </h3>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl font-semibold text-primary">
-                  {product.price.toFixed(2)}€
-                </span>
-                {product.isOnSale && product.originalPrice && (
-                  <span className="text-lg text-muted-foreground line-through">
-                    {product.originalPrice.toFixed(2)}€
-                  </span>
-                )}
-              </div>
               <p className="text-muted-foreground leading-relaxed">
                 {product.description}
               </p>

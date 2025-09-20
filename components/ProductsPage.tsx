@@ -39,12 +39,6 @@ export default function ProductsPage() {
 
     // Sort products
     switch (sortBy) {
-      case "price-low":
-        filtered = [...filtered].sort((a, b) => a.price - b.price);
-        break;
-      case "price-high":
-        filtered = [...filtered].sort((a, b) => b.price - a.price);
-        break;
       case "name":
         filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
         break;
@@ -150,8 +144,6 @@ export default function ProductsPage() {
                   className="px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
                 >
                   <option value="featured">Recommandés</option>
-                  <option value="price-low">Prix croissant</option>
-                  <option value="price-high">Prix décroissant</option>
                   <option value="name">Nom A-Z</option>
                 </select>
 
@@ -232,8 +224,6 @@ export default function ProductsPage() {
                       className="w-full px-3 py-2 border border-border rounded-lg"
                     >
                       <option value="featured">Recommandés</option>
-                      <option value="price-low">Prix croissant</option>
-                      <option value="price-high">Prix décroissant</option>
                       <option value="name">Nom A-Z</option>
                     </select>
                   </div>
