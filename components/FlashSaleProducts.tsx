@@ -3,12 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { getSaleProducts } from "@/lib/products";
+import { getFeaturedProducts } from "@/lib/products";
 import { Clock, Zap } from "lucide-react";
 
 export default function FlashSaleProducts() {
-  const saleProducts = getSaleProducts();
+  const saleProducts = getFeaturedProducts();
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
+  const featuredProducts = getFeaturedProducts();
 
   return (
     <motion.section
@@ -128,7 +129,7 @@ export default function FlashSaleProducts() {
 
         {/* Products grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {saleProducts.map((product, index) => (
+          {featuredProducts.map((product, index) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -238,7 +239,7 @@ function ProductCard({
         </motion.div>
 
         {/* Sale badge */}
-        {product.isOnSale && (
+        {product.isFeatured && (
           <motion.div
             className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded flex items-center gap-1"
             initial={{ scale: 0, rotate: -15 }}
@@ -255,7 +256,7 @@ function ProductCard({
               boxShadow: "0 4px 12px rgba(62,44,35,0.3)",
             }}
           >
-            <Zap className="w-3 h-3 fill-current" />-{discountPercentage}%
+              <Zap className="w-3 h-3 fill-current" />-{10}%
           </motion.div>
         )}
 

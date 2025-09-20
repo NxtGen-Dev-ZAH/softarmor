@@ -24,7 +24,7 @@ export default function ProductComparison({
     { key: "origin", label: "Origine", type: "text" },
     { key: "category", label: "Catégorie", type: "text" },
     { key: "sizes", label: "Tailles disponibles", type: "sizes" },
-    { key: "isOnSale", label: "En promotion", type: "boolean" },
+    { key: "isFeatured", label: "En promotion", type: "boolean" },
     { key: "isFeatured", label: "Produit vedette", type: "boolean" },
   ];
 
@@ -87,9 +87,9 @@ export default function ProductComparison({
                           fill
                           className="object-cover"
                         />
-                        {product.isOnSale && (
-                          <div className="absolute top-1 left-1">
-                            <span className="bg-destructive text-destructive-foreground px-1 py-0.5 rounded text-xs">
+                        {product.isFeatured && (
+                            <div className="absolute top-1 left-1">
+                            <span className="bg-primary text-primary-foreground px-1 py-0.5 rounded text-xs">
                               PROMO
                             </span>
                           </div>
